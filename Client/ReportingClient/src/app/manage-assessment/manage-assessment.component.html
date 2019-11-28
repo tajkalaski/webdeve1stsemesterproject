@@ -1,0 +1,66 @@
+<content-intro title="manageAssessments_Title" subTitle="manageAssessment_SubTitle"
+  description="manageAssessment_Description">
+</content-intro>
+<form [formGroup]="assessmentForm">
+  <div class="row">
+    <div class="col-md-3 float-left">
+      <div class="form-group form-group-stacked">
+        <label class="form-label" for="title">{{ 'createAssessment_AssessmentTitle' | translate }}</label>
+        <input type="text" id="title" class="form-control input-field" formControlName="title">
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Title is required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 float-left">
+      <div class="form-group form-group-stacked">
+        <label class="form-label"
+          for="assessmentQuestions">{{ 'createAssessment_AssessmentQuestionsTitle' | translate }}</label>
+        <ul id="assessmentQuestions">
+          <li *ngFor="let category of questionCategories">
+            {{ category.name }} <span class="fa fa-caret-square-o-down" (click)="category.expanded = !category.expanded"
+              ng-model="category.expanded"
+              [ngClass]="{ '': !category.expanded, 'fa-caret-square-o-down-reversed': category.expanded }"></span>
+            <ul *ngIf="category.expanded">
+              <li *ngFor="let questionSubCategories of category.questionSubCategories">
+                {{ questionSubCategories.name }} <span class="fa fa-caret-square-o-down"
+                  (click)="questionSubCategories.expanded = !questionSubCategories.expanded"
+                  ng-model="questionSubCategories.expanded"
+                  [ngClass]="{ '': !questionSubCategories.expanded, 'fa-caret-square-o-down-reversed': questionSubCategories.expanded }"></span>
+                <ul *ngIf="questionSubCategories.expanded">
+                  <li *ngFor="let question of questionSubCategories.questions">
+                    {{ question.name }} <span class="fa fa-caret-square-o-down"
+                      (click)="question.expanded = !question.expanded" ng-model="question.expanded"
+                      [ngClass]="{ '': !question.expanded, 'fa-caret-square-o-down-reversed': question.expanded }"></span>
+                    <ul *ngIf="question.expanded">
+                      <li *ngFor="let subQuestion of question.subQuestions">
+                        <div>{{ subQuestion.name }} <i class="fa" (click)="subQuestion.selected = !subQuestion.selected"
+                            [ngClass]="{ 'fa-square-o': !subQuestion.selected, 'fa-check-square': subQuestion.selected }"
+                            style="font-size: 125%;"></i>
+                            <div *ngIf="subQuestion.selected" class="form-group responsible-person-dropdown" style="margin-bottom: 0px;">
+                              <label (click)="approveResponsible(subQuestion.responsiblePerson)" style="margin-left: 20px; margin-right: 10px; display:inline;" for="responsiblePerson">{{ 'createAssessment_Responsible' | translate }}</label>
+                              <select (change)="onResponsibleSelect($event.target.value, subQuestion)" style="display:inline; width: 35%;" id="responsiblePerson" class="form-control input-field">
+                                <option value=""></option>
+                                <option *ngFor="let user of users" value="{{user | json}}" [selected]="subQuestion.responsiblePerson ? user.email === subQuestion.responsiblePerson.email : ''">{{ user.firstName }} {{ user.lastName }} - {{ user.role }}</option>
+                              </select>
+                              <!-- {{ subQuestion | json }} -->
+                            </div>                    
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="bottom-content-button">
+  <button (click)="updateAssessment()" class="button button-save">{{ 'manageAssessment_Save' | translate }}</button>
+  <button (click)="cancel()" class="button button-cancel">{{ 'manageAssessment_Cancel' | translate }}</button>
+</div>

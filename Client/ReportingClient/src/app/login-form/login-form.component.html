@@ -1,0 +1,14 @@
+<div class="login-background">
+  <div class="wrapper">
+    <div class="sign-in">
+      <h1>Welcome to Respaunce<sup>®</sup> CSR Management Tool</h1>
+      <h4>Sign in below</h4>
+    </div>
+    <div class="login-form">
+      <input #email class="form-control input-field" type="text" placeholder="Email">
+      <input #password (keyup.enter)="login(email.value, password.value)" class="form-control input-field"
+        type="password" placeholder="Password">
+      <button (click)="login(email.value, password.value)" class="button">Sign in</button>
+    </div>
+  </div>
+</div>

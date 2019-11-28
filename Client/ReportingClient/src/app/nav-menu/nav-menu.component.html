@@ -1,0 +1,77 @@
+<nav class="top-nav">
+    <div class="top-nav-logo-container">
+        <img class="top-nav-logo" src="assets/images/respaunce-logo.png" alt="Respaunce">
+    </div>
+    <img class="top-nav-banner" src="assets/images/nav-banner.png" alt="Respaunce">
+    <div class="wrapper">
+        <div class="top-nav-header">
+            <div (click)="focus()" class="top-nav-company" routerLink="">{{ user.companyName }}</div>
+            <div (click)="focus()" class="top-nav-username" routerLink="">{{ user.firstName }} {{ user.lastName }}</div>
+        </div>
+        <div onselectstart="return false" class="top-nav-menu-compressed">
+            <div (click)="toggleSubMenu()" class="top-nav-menu-compressed-icons">
+                <div class="top-nav-menu-compressed-icon-bar"></div>
+                <div class="top-nav-menu-compressed-icon-bar"></div>
+                <div class="top-nav-menu-compressed-icon-bar"></div>
+            </div>
+            <div class="top-nav-menu-compressed-menu" *ngIf="showSubMenu">
+                <ul>
+                    <li *ngIf="user.role != 'Supplier'" class="top-nav-menu-compressed-menu-item" routerLink="suppliers" onselectstart="return false">{{ 'suppliers' | translate }}</li>
+                    <li class="top-nav-menu-compressed-menu-item" routerLink="compliance" onselectstart="return false">{{ 'compliance' | translate }}</li>
+                    <li class="top-nav-menu-compressed-menu-item" routerLink="data" onselectstart="return false">{{ 'data' | translate }}</li>
+                    <li *ngIf="user.role != 'Supplier'" class="top-nav-menu-compressed-menu-item" routerLink="focusareas" onselectstart="return false">{{ 'focusareas' | translate }}</li>
+                    <li *ngIf="user.role != 'Supplier'" class="top-nav-menu-compressed-menu-item" routerLink="analysis" onselectstart="return false">{{ 'analysis' | translate }}</li>
+                    <li *ngIf="user.role != 'Supplier'" class="top-nav-menu-compressed-menu-item" routerLink="reports" onselectstart="return false">{{ 'reports' | translate }}</li>
+                    <li class="top-nav-menu-compressed-menu-item" onselectstart="return false">{{ 'administration' | translate }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="top-nav-menu">
+            <ul>
+                <li *ngIf="user.role != 'Supplier'" (click)="focus(analysis.id)" #analysis id="{{analysisMenuItem.name}}" [ngClass]="analysisMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="analysis" class="top-nav-item top-nav-item-pointer top-nav-analysis-gradient">
+                    <div class="top-nav-item-icon top-nav-analysis-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'analysis' | translate }}</div>
+                </li>
+                <li *ngIf="user.role != 'Supplier'" (click)="focus(compliance.id)" #compliance id="{{complianceMenuItem.name}}" [ngClass]="complianceMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="compliance" class="top-nav-item top-nav-item-pointer top-nav-compliance-gradient">
+                    <div class="top-nav-item-icon top-nav-compliance-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'compliance' | translate }}</div>
+                </li>
+                <li *ngIf="user.role == 'Supplier'" (click)="focus(compliance.id)" #compliance id="{{complianceMenuItem.name}}" [ngClass]="complianceMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="compliance/certificates" class="top-nav-item top-nav-item-pointer top-nav-compliance-gradient">
+                    <div class="top-nav-item-icon top-nav-compliance-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'compliance' | translate }}</div>
+                </li>
+                <li *ngIf="user.role != 'Supplier'" (click)="focus(focusareas.id)" #focusareas id="{{focusAreasMenuItem.name}}" [ngClass]="focusAreasMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="focusareas" class="top-nav-item top-nav-item-pointer top-nav-focus-areas-gradient">
+                    <div class="top-nav-item-icon top-nav-focus-areas-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'focusareas' | translate }}</div>
+                </li>
+                <li *ngIf="user.role != 'Supplier'" (click)="focus(suppliers.id)" #suppliers id="{{suppliersMenuItem.name}}" [ngClass]="suppliersMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="suppliers" class="top-nav-item top-nav-item-pointer top-nav-suppliers-gradient">
+                    <div class="top-nav-item-icon top-nav-suppliers-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'suppliers' | translate }}</div>
+                </li>
+                <li *ngIf="user.role != 'Supplier'" (click)="focus(reports.id)" #reports id="{{reportsMenuItem.name}}" [ngClass]="reportsMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="reports" class="top-nav-item top-nav-item-pointer top-nav-reports-gradient">
+                    <div class="top-nav-item-icon top-nav-reports-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'reports' | translate }}</div>
+                </li>
+                <li (click)="focus(data.id)" #data id="{{dataMenuItem.name}}" [ngClass]="dataMenuItem.selected ? 'top-nav-item-active' : ''" routerLink="data" class="top-nav-item top-nav-item-pointer top-nav-data-gradient">
+                    <div class="top-nav-item-icon top-nav-data-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'data' | translate }}</div>
+                </li>
+                <li #admin id="{{adminMenuItem.name}}" [ngClass]="adminMenuItem.selected ? 'top-nav-item-active' : ''" class="top-nav-item top-nav-admin-gradient top-nav-admin-dropdown">
+                    <div class="top-nav-item-icon top-nav-admin-icon"></div>
+                    <div class="top-nav-item-title" onselectstart="return false">{{ 'administration' | translate }}</div>
+                    <div (click)="focus(admin.id)" class="top-nav-admin-dropdown-content">
+                        <ul>
+                            <li *ngIf="user.role != 'Supplier'" class="top-nav-admin-dropdown-item" routerLink="manage-assessments" onselectstart="return false">{{ 'assessments' | translate }}</li>
+                            <li class="top-nav-admin-dropdown-item" routerLink="manage-company" onselectstart="return false">{{ 'companyprofile' | translate }}</li>
+                            <li class="top-nav-admin-dropdown-item" routerLink="manage-users" onselectstart="return false">{{ 'users' | translate }}</li>
+                            <li role="separator" class="top-nav-admin-dropdiwn-divider"></li>
+                            <li *ngIf="user.role != 'Supplier'" class="top-nav-admin-dropdown-item" routerLink="manage-documents" onselectstart="return false">{{ 'documents' | translate }}</li>
+                            <li class="top-nav-admin-dropdown-item" routerLink="manage-profile" onselectstart="return false">{{ 'myprofile' | translate }}</li>
+                            <li class="top-nav-admin-dropdown-item" (click)="logOut()" routerLink="login" onselectstart="return false">{{ 'signout' | translate }}</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

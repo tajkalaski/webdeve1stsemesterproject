@@ -1,0 +1,264 @@
+ul {
+  margin-bottom: 0px;
+  padding: 0px;
+  height: inherit;
+  list-style-type: none;
+}
+
+$nav-menu-height: 100px;
+
+.top-nav {
+  position: fixed;
+  height: $nav-menu-height * 1.1;
+  width: 100%;
+  top: 0;
+  background: white;
+  z-index: 69;
+  color: rgb(97, 123, 138);
+}
+
+.wrapper {
+  margin-top: 0;
+  height: $nav-menu-height;
+}
+
+li,
+div:focus {
+  outline: none;
+}
+
+.top-nav-header {
+  position: absolute;
+  padding-top: 20px;
+}
+
+.top-nav-company {
+  width: 100%;
+  font-size: 18px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.top-nav-username {
+  width: 100%;
+  cursor: pointer;
+}
+
+@media (max-width: 1100px) {
+  .top-nav-menu-compressed {
+    display: block !important;
+  }
+
+  .top-nav-menu {
+    display: none !important;
+  }
+}
+
+.top-nav-menu-compressed {
+  display: none;
+  float: right;
+  height: 100%;
+  margin-right: 7.5%;
+  cursor: pointer;
+}
+
+.top-nav-menu-compressed-icons {
+  float: inherit;
+  position: relative;
+  top: 25%;
+}
+
+
+.top-nav-menu-compressed-icon-bar {
+  width: 20px;
+  height: 3px;
+  border-radius: 1px;
+  background-color: #90268f;
+  margin: 3px 0px;
+}
+
+.top-nav-menu-compressed-menu {
+  position: relative;
+  top: 50%;
+  background: grey;
+  color: white;
+  
+}
+
+.top-nav-menu-compressed-menu-item {
+  display: flex;
+  padding: 7.5px 15px;
+}
+
+
+.top-nav-menu-compressed-menu-item:hover {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35) inset;
+}
+
+.top-nav-menu {
+  height: 100%;
+  float: right;
+}
+
+.top-nav-item {
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+  margin: 20px 0px 0px 4px;
+}
+
+.top-nav-item-icon {
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center center;
+  height: 70%;
+}
+
+.top-nav-item-title {
+  color: white;
+  font-size: 75%;
+  text-align: center;
+  height: 30%;
+}
+
+.top-nav-item:hover {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35) inset;
+}
+
+.top-nav-item:active {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35) inset;
+}
+
+.top-nav-item-active {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.35) inset;
+}
+
+.top-nav-item-pointer {
+  cursor: pointer;
+}
+
+.top-nav-suppliers-gradient {
+  background: linear-gradient(#00ADEE, #2D3192);
+}
+
+.top-nav-suppliers-icon {
+  background-image: url(/assets/images/suppliers-icon.svg);
+}
+
+.top-nav-compliance-gradient {
+  background: linear-gradient(#72CEE0, #007C9B);
+}
+
+.top-nav-compliance-icon {
+  background-image: url(/assets/images/compliance-icon.svg);
+}
+
+.top-nav-data-gradient {
+  background: linear-gradient(#0082C1, #0B014B);
+}
+
+.top-nav-data-icon {
+  background-image: url(/assets/images/data-icon.svg);
+  background-size: 32%;
+}
+
+.top-nav-focus-areas-gradient {
+  background: linear-gradient(#BFD637, #0F9544);
+}
+
+.top-nav-focus-areas-icon {
+  background-image: url(/assets/images/focus-areas-icon.svg);
+}
+
+.top-nav-analysis-gradient {
+  background: linear-gradient(#C39A6B, #744C28);
+}
+
+.top-nav-analysis-icon {
+  background-image: url(/assets/images/analysis-icon.svg);
+}
+
+.top-nav-reports-gradient {
+  background: linear-gradient(#E4068C, #950974);
+}
+
+.top-nav-reports-icon {
+  background-image: url(/assets/images/reports-icon.svg);
+}
+
+.top-nav-admin-gradient {
+  background: linear-gradient(#FCAF17, #DE611E);
+}
+
+.top-nav-admin-icon {
+  background-image: url(/assets/images/admin-icon.svg);
+}
+
+.top-nav-admin-dropdown {
+  cursor: default;
+}
+
+.top-nav-admin-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #667e8e;
+  right: 15%;
+  left: auto;
+}
+
+.top-nav-admin-dropdown-item {
+  color: white;
+  padding: 7.5px 15px;
+  cursor: pointer;
+}
+
+.top-nav-admin-dropdown-item:hover {
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35) inset;
+}
+
+.top-nav-admin-dropdiwn-divider {
+  margin: 5px 0px;
+  height: 1px;
+  width: 100%;
+  border-top: 1px solid white;
+  filter: opacity(50%);
+}
+
+.top-nav-admin-dropdown:hover .top-nav-admin-dropdown-content {
+  display: block;
+}
+
+@media (max-width: 1100px) {
+  .top-nav-banner {
+    display: none !important;
+  }
+
+  .top-nav-logo {
+    display: none !important;
+  }
+
+  .top-nav-menu-compressed {
+    margin: 0;
+  }
+}
+
+.top-nav-banner {
+  height: $nav-menu-height - 20;
+  margin-top: 20px;
+  max-width: 30%;
+  float: right;
+}
+
+.top-nav-logo-container {
+  position: fixed;
+  height: $nav-menu-height;
+  width: 15%;
+  top: 0; 
+  padding-top: 26px;
+}
+
+.top-nav-logo {
+  position: absolute;
+  width: 100%;
+  padding: 0px 7.5%;
+  }

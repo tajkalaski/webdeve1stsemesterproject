@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{ 'requestSupplier_Title' | translate}}</h4>
+  <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+    (click)="modal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="requestSupplierDataForm">
+    <div class="form-group">
+      <div style="width: 100%">
+        <label for="supplierName">{{ 'requestSupplier_Name' | translate}}</label>
+        <input type="text" id="supplierName" class="form-control input-field" formControlName="supplierName">
+        <div class="alert alert-danger" *ngIf="supplierName.touched && supplierName.invalid">
+          Supplier name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div style="width: 100%">
+        <label for="supplierVATIN">{{ 'requestSupplier_VATIN' | translate }}</label>
+        <input type="text" id="supplierVATIN" class="form-control input-field" formControlName="supplierVATIN">
+        <div class="alert alert-danger" *ngIf="supplierVATIN.touched && supplierVATIN.invalid">
+          VATIN is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div style="width: 100%">
+        <label for="email">{{ 'requestSupplier_ContactPersonEmail' | translate }}</label>
+        <input type="text" id="email" class="form-control input-field" formControlName="email">
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+          E-mail is required.
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="button" (click)="modal.dismiss()">{{ 'button_Cancel' | translate }}</button>
+  <button type="button" ngbAutofocus class="button" (click)="createSupplierAndSupplierUser()">{{ 'requestSupplier_RequestData' | translate }}</button>
+</div>

@@ -1,0 +1,33 @@
+<div class="utility-tools">
+  <div class="tool-box">
+    <img (click)="toolBoxExpanded = !toolBoxExpanded" src="/assets/images/tool-box.svg" alt="tool-box">
+    <div *ngIf="toolBoxExpanded" [@slideUpDown] class="tool-box-menu">
+      <div (click)="changeTool('Notes')" class="tool-box-menu-item">
+        <img src="/assets/images/note-icon.svg" alt="note">
+      </div>
+      <div (click)="changeTool('Comments')" class="tool-box-menu-item">
+        <img src="/assets/images/comment-icon.svg" alt="note">
+      </div>
+      <div (click)="changeTool('Calculations')" class="tool-box-menu-item">
+        <img src="/assets/images/calculation-icon.svg" alt="note">
+      </div>
+      <div (click)="changeTool('Help')" class="tool-box-menu-item">
+        <img src="/assets/images/help-icon.svg" alt="note">
+      </div>
+      <div (click)="changeTool('Documents')" class="tool-box-menu-item">
+        <img src="/assets/images/document-icon.svg" alt="note">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="selectedTool" class="tool-content">
+    <span class="tool-context-border"></span>
+    <span (click)="changeTool()" style="position: absolute; cursor: pointer; width: 10%; text-align: center;">X</span>
+    <h4 class="content-sub-title" style="text-align:center;">{{ selectedTool }}</h4>
+    <!-- <div>
+      <button (click)="getUrl()">Get URL</button>
+    </div>
+    <div>
+      {{ currentRoute }}
+    </div> -->
+  </div>
+</div>

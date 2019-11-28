@@ -1,0 +1,37 @@
+<content-intro title="manageAssessments_Title" subTitle="manageAssessments_SubTitle"
+  description="manageAssessments_Description">
+</content-intro>
+<div class="top-content-button">
+  <button routerLink="create" class="button button-create">
+    {{ 'manageAssessments_Create' | translate }}
+  </button>
+</div>
+<ng-container *ngIf="assessments.length > 0; else noAssessmentCreatedYet">
+  <h4 class="content-table-title">
+    {{ 'manageAssessments_TableTitle' | translate }}
+  </h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="table-column-head">
+          {{ 'manageAssessments_TableColTitle' | translate }}
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let assessment of assessments">
+        <td class="icon-col"><i class="fa fa-file-text-o"></i></td>
+        <td class="table-cell">
+          {{ assessment.title }}
+        </td>
+        <td class="table-cell">
+          <button routerLink="{{assessment.id}}" class="button button-edit"></button>
+          <button (click)="deleteAssessment(assessment)" class="button button-delete"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #noAssessmentCreatedYet>{{ 'manageAssessments_NoAssessmentCreated' | translate }}</ng-template>

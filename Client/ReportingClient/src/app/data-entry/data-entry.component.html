@@ -1,0 +1,28 @@
+<content-intro title="dataEntry_Title" subTitle="dataEntry_SubTitle" description="dataEntry_Description">
+</content-intro>
+<button class="button" (click)="createDataEntry()" >Add Record</button>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Subcategory</th>
+            <th scope="col">Date</th>
+            <th scope="col">Value</th>
+            <th scope="col">Unit</th>
+            <th scope="col">Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataEntry of dataEntries">
+            <td class="icon-col"><i class="fa fa-sun-o"></i></td>
+            <td class="table-cell">{{ dataEntry.subquestion }}</td>
+            <td class="table-cell">{{ dataEntry.to }}</td>
+            <td class="table-cell">{{ dataEntry.value }}</td>
+            <td class="table-cell">Unit</td>
+            <td>
+                <button (click)="updateDataEntry(dataEntry)"><i class="fa fa-pencil-square-o button"></i></button>
+                <button (click)="deleteDataEntry(dataEntry)"><i class="fa fa-trash button"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

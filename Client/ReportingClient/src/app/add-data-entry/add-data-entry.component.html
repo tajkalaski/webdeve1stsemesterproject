@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{ 'addData_Title' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+        (click)="dismissModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="addDataForm">
+        <div class="form-group">
+            <div style="width: 100%">
+                <label for="data">Category</label>
+                <select class="form-control input-field" name="" id="dataentries" formControlName="dataId">
+                    <option value="" selected>Category1</option>
+                    <option *ngFor="let question of questions">{{ question.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="width: 100%">
+                <label for="data">SubCategory</label>
+                <select class="form-control input-field" name="" id="dataentries" formControlName="dataId">
+                    <option value="" selected>SubCategory1</option>
+                    <option *ngFor="let subquestion of questions[3].subQuestions">{{ subquestion.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <ng-container>
+            <div class="form-group">
+                <div style="width: 100%">
+                    <label for="dataFrom">From</label>
+                    <input type="date" id="dataFrom" class="form-control input-field" formControlName="from">
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="width: 100%">
+                    <label for="dataTo">To</label>
+                    <input type="date" id="dataTo" class="form-control input-field" formControlName="to">
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="width: 90%;">
+                    <label for="dataValue">Value</label>
+                    <input type="text" id="dataValue" class="form-control input-field" formControlName="value">
+                </div>
+                <div style="width: 10%;">
+                    {{ unit }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="width: 100%">
+                    <label for="dataTo">Unit</label>
+                    <input type="text" id="dataUnit" class="form-control input-field" formControlName="dataUnit">
+                </div>
+            </div>
+            
+        </ng-container>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="button" (click)="dismissModal()">{{ 'button_Cancel' | translate }}</button>
+    <button type="button" class="button"
+        (click)="createCertificate()">{{ 'addData_Create' | translate }}</button>
+</div>

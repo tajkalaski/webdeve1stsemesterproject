@@ -1,0 +1,52 @@
+<h2 class="content-title">
+    {{ 'manageSuppliers_Title' | translate }}
+</h2>
+<h4 class="content-sub-title">
+    {{ 'manageSupplierCertificates_SubTitle' | translate }}
+</h4>
+<p class="content-description">
+    {{ 'manageCertificates_Description' | translate }}
+</p>
+<div class="top-content-button">
+    <button (click)="addCertificate()" class="button button-create">
+        {{ 'manageCertificates_Create' | translate }}
+    </button>
+</div>
+<h4 class="content-table-title">
+    {{ 'manageCertificates_TableTitle' | translate }} {{supplierName}}
+</h4>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="table-column-head">Status</th>
+        <th></th>
+        <th class="table-column-head">
+          {{ 'manageCertificates_TableColCertificateName' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageCertificates_TableColOverallRating' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageCertificates_TableColCertifiedFrom' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageCertificates_TableColCertifiedTo' | translate }}
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let certificate of supplierCertificates">
+        <td class="traffic-light-col">Green</td>
+        <td class="icon-col"><i class="fa fa-user"></i></td>
+        <td class="table-cell">{{ certificate.certificateName }}</td>
+        <td class="table-cell">{{ certificate.overallRating }}</td>
+        <td class="table-cell">{{ certificate.certifiedFrom | date }}</td>
+        <td class="table-cell">{{ certificate.certifiedTo | date }}</td>
+        <td style="width: fit-content; font-size: 200%; text-align: center;">
+          <button  [routerLink]="['/suppliers/', id, 'certificates', certificate.id ]" class="button button-edit"></button>
+          <button (click)="deleteCertificate(certificate)" class="button button-delete"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

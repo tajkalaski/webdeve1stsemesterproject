@@ -1,0 +1,48 @@
+<content-intro title="manageCompliance_Title" subTitle="manageCertificates_SubTitle" description="manageCertificates_Description">
+</content-intro>
+<div class="top-content-button">
+    <button (click)="addCertificate()" class="button button-create">
+    {{ 'manageCertificates_Create' | translate }}
+  </button>
+</div>
+<ng-container *ngIf="certificates.length > 0; else noCertificatesAddedYet">
+    <h4 class="content-table-title">
+        {{ 'manageCertificates_TableTitle' | translate }}
+    </h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="table-column-head">Status</th>
+                <th></th>
+                <th class="table-column-head">
+                    {{ 'manageCertificates_TableColCertificateName' | translate }}
+                </th>
+                <th class="table-column-head">
+                    {{ 'manageCertificates_TableColOverallRating' | translate }}
+                </th>
+                <th class="table-column-head">
+                    {{ 'manageCertificates_TableColCertifiedFrom' | translate }}
+                </th>
+                <th class="table-column-head">
+                    {{ 'manageCertificates_TableColCertifiedTo' | translate }}
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let certificate of certificates">
+                <td class="traffic-light-col">Green</td>
+                <td class="icon-col"><i class="fa fa-user"></i></td>
+                <td class="table-cell">{{ certificate.name }}</td>
+                <td class="table-cell">{{ certificate.overallRating }}</td>
+                <td class="table-cell">{{ certificate.certifiedFrom | date }}</td>
+                <td class="table-cell">{{ certificate.certifiedTo | date }}</td>
+                <td class="table-cell">
+                    <button [routerLink]="[certificate.id]" class="button button-edit"></button>
+                    <button (click)="deleteCertificate(certificate)" class="button button-delete"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+<ng-template #noCertificatesAddedYet>{{ 'manageCertificates_NoCertificateAddedYet' | translate }}</ng-template>

@@ -1,0 +1,150 @@
+<content-intro title="manageSuppliers_Title" subTitle="manageSupplier_SubTitle"
+  description="manageSupplier_Description">
+</content-intro>
+<div class="top-content-button">
+  <button routerLink="certificates" class="button button-create">
+    {{ 'manageSupplier_SupplierCertificates' | translate }}
+  </button>
+</div>
+<div class="top-content-button">
+  <button (click)="requestDataFromSupplier()" class="button button-create">
+    {{ 'createSupplier_RequestFromSupplier' | translate }}
+  </button>
+</div>
+<form [formGroup]="supplierForm" class="company-form">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="name">{{ 'manageCompany_Name' | translate }}</label>
+          <input type="text" id="name" class="form-control input-field" formControlName="name">
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="vatin">{{ 'manageCompany_VATIN' | translate }}</label>
+          <input type="text" id="vatin" class="form-control input-field" formControlName="vatin">
+          <div class="alert alert-danger" *ngIf="vatin.touched && vatin.invalid">
+            VATIN is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="address">{{ 'manageCompany_Address' | translate }}</label>
+          <input type="text" id="address" class="form-control input-field" formControlName="address">
+          <div class="alert alert-danger" *ngIf="address.touched && address.invalid">
+            Address is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="postalCode">{{ 'manageCompany_PostalCode' | translate }}</label>
+          <input type="text" id="postalCode" class="form-control input-field" formControlName="postalCode">
+          <div class="alert alert-danger" *ngIf="postalCode.touched && postalCode.invalid">
+            Postal code is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="city">{{ 'manageCompany_City' | translate }}</label>
+          <input type="text" id="city" class="form-control input-field" formControlName="city">
+          <div class="alert alert-danger" *ngIf="city.touched && city.invalid">
+            City is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="country">{{ 'manageCompany_Country' | translate }}</label>
+          <input type="text" id="country" class="form-control input-field" formControlName="country">
+          <div class="alert alert-danger" *ngIf="country.touched && country.invalid">
+            Country is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10" style="padding-left: 0px; margin-top: 10px;">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="employees">{{ 'manageCompany_Employees' | translate }}</label>
+          <input type="text" id="employees" class="form-control input-field" formControlName="employees">
+          <div class="alert alert-danger" *ngIf="employees.touched && employees.invalid">
+            Employees is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="annualRevenue">{{ 'manageCompany_Revenue' | translate }}</label>
+          <input type="text" id="annualRevenue" class="form-control input-field" formControlName="annualRevenue">
+          <div class="alert alert-danger" *ngIf="annualRevenue.touched && annualRevenue.invalid">
+            Annual revenue is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="legalForm">{{ 'manageCompany_LegalForm' | translate }}</label>
+          <select id="legalForm" class="form-control input-field" formControlName="legalFormId">
+            <option *ngFor="let legalForm of legalForms" [ngValue]="legalForm">{{ legalForm.name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="legalForm.touched && legalForm.invalid">
+            Legal form is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="typeOfOwnership">{{ 'manageCompany_TypeOfOwnership' | translate }}</label>
+          <select id="typeOfOwnership" class="form-control input-field" formControlName="typeOfOwnershipId">
+            <option *ngFor="let typeOfOwnership of typesOfOwnership" [ngValue]="typeOfOwnership">
+              {{ typeOfOwnership.name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="typeOfOwnership.touched && typeOfOwnership.invalid">
+            Type of ownership is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label"
+            for="financialYearStart">{{ 'manageCompany_FinancialYearStart' | translate }}</label>
+          <input type="text" id="financialYearStart" class="form-control input-field"
+            formControlName="financialYearStart">
+          <div class="alert alert-danger" *ngIf="financialYearStart.touched && financialYearStart.invalid">
+            Financial year start is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label class="form-label" for="financialYearEnd">{{ 'manageCompany_FinancialYearEnd' | translate }}</label>
+          <input type="text" id="financialYearEnd" class="form-control input-field" formControlName="financialYearEnd">
+          <div class="alert alert-danger" *ngIf="financialYearEnd.touched && financialYearEnd.invalid">
+            Financial year end is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="bottom-content-button">
+  <button (click)="updateSupplier()" class="button button-save">{{ 'manageProfile_Save' | translate }}</button>
+  <button (click)="cancel()" class="button button-cancel">{{ 'manageProfile_Cancel' | translate }}</button>
+</div>

@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">{{ 'addCertificate_Title' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+        (click)="dismissModal()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="addCertificateForm">
+        <div class="form-group">
+            <div style="width: 100%">
+                <label for="certificates">{{ 'addCertificate_CertificateName' | translate}}</label>
+                <select class="form-control input-field" name="" id="certificates" formControlName="certificateId">
+                    <option value="" selected>{{ 'manageData_SelectResponsibilityArea' | translate}}</option>
+                    <option *ngFor="let certificate of certificates" [ngValue]="certificate.id">{{ certificate.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <ng-container *ngIf="certificateId.value">
+            <div class="form-group">
+                <div style="width: 100%">
+                    <label for="certifiedFrom">{{ 'addCertificate_CertifiedFrom' | translate }}</label>
+                    <input type="date" id="certifiedFrom" class="form-control input-field" formControlName="certifiedFrom">
+                    <div class="alert alert-danger" *ngIf="certifiedFrom.touched && certifiedFrom.invalid">
+                        Applies from is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="width: 100%">
+                    <label for="certifiedTo">{{ 'addCertificate_CertifiedTo' | translate }}</label>
+                    <input type="date" id="certifiedTo" class="form-control input-field" formControlName="certifiedTo">
+                    <div class="alert alert-danger" *ngIf="certifiedTo.touched && certifiedTo.invalid">
+                        Applies to is required.
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="width: 90%;">
+                    <label for="overallRating">{{ 'addCertificate_OverallRating' | translate }}</label>
+                    <input type="text" id="overallRating" class="form-control input-field" formControlName="overallRating">
+                    <div class="alert alert-danger" *ngIf="overallRating.touched && overallRating.invalid">
+                        E-mail is required.
+                    </div>
+                </div>
+                <div style="width: 10%;">
+                    {{ unit }}
+                </div>
+            </div>
+        </ng-container>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="button" (click)="dismissModal()">{{ 'button_Cancel' | translate }}</button>
+    <button type="button" class="button"
+        (click)="createCertificate()">{{ 'addCertificate_Create' | translate }}</button>
+</div>

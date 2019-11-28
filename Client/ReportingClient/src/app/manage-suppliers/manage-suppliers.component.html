@@ -1,0 +1,55 @@
+<h2 class="content-title">
+  {{ 'manageSuppliers_Title' | translate }}
+</h2>
+<h4 class="content-sub-title">
+  {{ 'manageSuppliers_SubTitle' | translate }}
+</h4>
+<p class="content-description">
+  {{ 'manageSuppliers_Description' | translate }}
+</p>
+<button routerLink="create" class="button button-create">
+  {{ 'manageSuppliers_Create' | translate }}
+</button>
+<ng-container *ngIf="suppliers.length > 0; else noSupplierCreatedYet">
+  <h4 class="content-table-title">
+    {{ 'manageSuppliers_TableTitle' | translate }}
+  </h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="table-column-head">
+          {{ 'manageSuppliers_TableColName' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageSuppliers_TableColVATIN' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageSuppliers_TableColCountry' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageSuppliers_TableColRevenue' | translate }}
+        </th>
+        <th class="table-column-head">
+          {{ 'manageSuppliers_TableColEmployees' | translate }}
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let supplier of suppliers">
+        <td class="icon-col"><i class="fa fa-truck"></i></td>
+        <td class="table-cell">{{ supplier.name }}</td>
+        <td class="table-cell">{{ supplier.vatin }}</td>
+        <td class="table-cell">{{ supplier.country }}</td>
+        <td class="table-cell">{{ supplier.annualRevenue }}</td>
+        <td class="table-cell">{{ supplier.employees }}</td>
+        <td style="width: fit-content">
+          <button [routerLink]="['/suppliers/', supplier.id]" class="button button-edit"></button>
+          <button (click)="deleteSupplier(supplier)" class="button button-delete"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #noSupplierCreatedYet>{{ 'manageSuppliers_NoSupplierCreated' | translate }}</ng-template>

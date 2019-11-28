@@ -1,0 +1,47 @@
+<content-intro title="manageUsers_Title" subTitle="manageUsers_SubTitle" description="manageUsers_Description">
+</content-intro>
+<div class="top-content-button">
+  <button routerLink="create" class="button button-create">
+    {{ 'manageUsers_Create' | translate }}
+  </button>
+</div>
+<h4 class="content-table-title">
+  {{ 'manageUsers_TableTitle' | translate }}
+</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="table-column-head">
+        {{ 'manageUsers_TableColName' | translate }}
+      </th>
+      <th class="table-column-head">
+        {{ 'manageUsers_TableColEmail' | translate }}
+      </th>
+      <th class="table-column-head">
+        {{ 'manageUsers_TableColLanguage' | translate }}
+      </th>
+      <th class="table-column-head">
+        {{ 'manageUsers_TableColRole' | translate }}
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td class="icon-col"><i class="fa fa-user"></i></td>
+      <td class="table-cell">
+        {{ user.firstName }} {{ user.lastName }}
+      </td>
+      <td class="table-cell">{{ user.email }}</td>
+      <td class="table-cell">{{ user.language }}</td>
+      <td class="table-cell">{{ user.role }}</td>
+      <td style="width: fit-content; font-size: 200%;">
+        <button *ngIf="user.role != 'Supplier'" [routerLink]="['/manage-users/', user.email]"
+          class="button button-edit"></button>
+        <button *ngIf="user.role != 'Admin' && user.role != 'Supplier'" (click)="deleteUser(user)"
+          class="button button-delete"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

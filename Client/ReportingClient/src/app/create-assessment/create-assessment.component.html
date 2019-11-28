@@ -1,0 +1,49 @@
+<content-intro title="manageAssessments_Title" subTitle="createAssessment_SubTitle"
+  description="createAssessment_Description"></content-intro>
+<form [formGroup]="assessmentForm">
+  <div class="row">
+    <div class="col-md-3 float-left">
+      <div class="form-group form-group-stacked">
+        <label class=" form-label" for="title">{{ 'createAssessment_AssessmentTitle' | translate }}</label>
+        <input type="text" id="title" class="form-control input-field" formControlName="title">
+        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
+          Title is required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 float-left">
+      <div class="form-group form-group-stacked">
+        <label class="form-label"
+          for="assessmentQuestions">{{ 'createAssessment_AssessmentQuestionsTitle' | translate }}</label>
+        <ul id="assessmentQuestions">
+          <li *ngFor="let category of questionCategories">
+            {{ category.name }} <span class="fa fa-caret-square-o-down" (click)="category.expanded = !category.expanded"
+              ng-model="category.expanded"
+              [ngClass]="{ '': !category.expanded, 'fa-caret-square-o-down-reversed': category.expanded }"></span>
+            <ul *ngIf="category.expanded">
+              <li *ngFor="let questionSubCategories of category.questionSubCategories">
+                {{ questionSubCategories.name }} <span class="fa fa-caret-square-o-down"
+                  (click)="questionSubCategories.expanded = !questionSubCategories.expanded"
+                  ng-model="questionSubCategories.expanded"
+                  [ngClass]="{ '': !questionSubCategories.expanded, 'fa-caret-square-o-down-reversed': questionSubCategories.expanded }"></span>
+                <ul *ngIf="questionSubCategories.expanded">
+                  <li *ngFor="let question of questionSubCategories.questions">
+                    <div>{{ question.name }} <i class="fa" (click)="question.selected = !question.selected"
+                        [ngClass]="{ 'fa-square-o': !question.selected, 'fa-check-square': question.selected }"
+                        style="float: right; font-size: 125%;"></i></div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="bottom-content-button">
+  <button (click)="createAssessment()" class="button button-save">{{ 'createAssessment_Create' | translate }}</button>
+  <button (click)="cancel()" class="button button-cancel">{{ 'createUser_Cancel' | translate }}</button>
+</div>

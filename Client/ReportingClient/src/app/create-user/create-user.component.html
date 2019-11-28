@@ -1,0 +1,78 @@
+<content-intro title="manageUsers_Title" subTitle="createUser_SubTitle" description="createUser_Description">
+  </content-intro>
+<form [formGroup]="createUserForm">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="firstName">{{ 'manageProfile_FirstName' | translate }}</label>
+          <input type="text" id="firstName" class="form-control input-field" formControlName="firstName">
+          <div class="alert alert-danger" *ngIf="firstName.touched && firstName.invalid">
+            First name is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="lastName">{{ 'manageProfile_LastName' | translate }}</label>
+          <input type="text" id="lastName" class="form-control input-field" formControlName="lastName">
+          <div class="alert alert-danger" *ngIf="lastName.touched && lastName.invalid">
+            Last name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="email">{{ 'manageProfile_Email' | translate }}</label>
+          <input type="text" id="email" class="form-control input-field" formControlName="email">
+          <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            Email is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="phoneNumber">{{ 'manageProfile_Phone' | translate }}</label>
+          <input type="text" id="phoneNumber" class="form-control input-field" formControlName="phoneNumber">
+          <div class="alert alert-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">
+            Phone number is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10">
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="language">{{ 'manageProfile_Language' | translate }}</label>
+          <select id="language" class="form-control input-field" formControlName="language">
+            <option *ngFor="let language of languages" [ngValue]="language">{{ language.name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="language.touched && language.invalid">
+            Language is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 float-left">
+        <div class="form-group form-group-stacked">
+          <label style="font-weight: 100;" for="role">{{ 'manageProfile_Role' | translate }}</label>
+          <select id="role" class="form-control input-field" formControlName="role">
+            <option *ngFor="let role of roles" [ngValue]="role">{{ role.name }}</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="role.touched && role.invalid">
+            Role is required.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="bottom-content-button">
+  <button (click)="createUser()" class="button button-save">{{ 'createUser_Create' | translate }}</button>
+  <button (click)="cancel()" class="button button-cancel">{{ 'createUser_Cancel' | translate }}</button>
+</div>
